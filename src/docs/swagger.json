@@ -3,7 +3,7 @@
   "info": {
     "title": "API Controle de Estoque",
     "description": "Está API tem como objetivo facilitar o controle de estoque da sua empresa.",
-    "termOfService": "http://localhost:3333/terms",
+    "termsOfService": "http://localhost:3333/terms",
     "contact": {
       "email": "danilo.mirandha@gmail.com"
     },
@@ -12,11 +12,11 @@
   "paths": {
     "/v1/user": {
       "post": {
-        "description": "Criar um  usuário.",
+        "description": "Criar usuário.",
         "requestBody": {
           "description": "Dados necessários para a criação de um novo usuário.",
           "content": {
-            "aplication/json": {
+            "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/RequestCreateUser"
               }
@@ -26,7 +26,7 @@
         "responses": {
           "200": {
             "content": {
-              "aplication/json": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseCreateUser"
                 }
@@ -40,9 +40,9 @@
       "post": {
         "description": "Logar e autenticar usuário",
         "requestBody": {
-          "description": "Dados necessários para login e autenticação do usuário",
+          "description": "Dados necessários para o login e autenticação de um usuário",
           "content": {
-            "aplication/json": {
+            "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/RequestAuthUser"
               }
@@ -52,7 +52,7 @@
         "responses": {
           "200": {
             "content": {
-              "aplication/json": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseAuthUser"
                 }
@@ -64,7 +64,7 @@
     },
     "/v1/me?user_id={user_id}": {
       "get": {
-        "description": "Busca de um usuário pelo seu id",
+        "description": "Busca de um usuário por id",
         "security": [
           {
             "bearerAuth": []
@@ -74,7 +74,7 @@
           {
             "name": "user_id",
             "in": "path",
-            "description": "ID do usuário",
+            "description": "Id do usuário",
             "required": "true",
             "type": "string",
             "format": "uuid"
@@ -83,7 +83,7 @@
         "responses": {
           "200": {
             "content": {
-              "aplication/json": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseCreateUser"
                 }
@@ -95,24 +95,22 @@
     },
     "/v1/user/remove?user_id={user_id}": {
       "delete": {
-        "description": "Remover um usuário",
+        "description": "Remover usuário",
         "parameters": [
           {
             "name": "user_id",
             "in": "path",
-            "description": "ID do usuário",
+            "description": "Id do usuário",
             "required": "true",
             "type": "string",
             "format": "uuid"
           }
         ],
-        "responses": {
-          "200": {
-            "content": {
-              "aplication/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseDeleteUser"
-                }
+        "200": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResponseDeleteUser"
               }
             }
           }
@@ -130,7 +128,7 @@
         "requestBody": {
           "description": "Dados de entrada necessários para a criação de uma nova categoria",
           "content": {
-            "aplication/json": {
+            "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/RequestCreateCategory"
               }
@@ -140,7 +138,7 @@
         "responses": {
           "200": {
             "content": {
-              "aplication/json": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseCreateCategory"
                 }
@@ -152,7 +150,7 @@
     },
     "/v1/category/edit?category_id={category_id}": {
       "put": {
-        "description": "Editar uma categoria",
+        "description": "Editar nome de uma categoria",
         "security": [
           {
             "bearerAuth": []
@@ -162,16 +160,16 @@
           {
             "name": "category_id",
             "in": "path",
-            "description": "ID da categoria",
+            "description": "Id da categoria",
             "required": "true",
             "type": "string",
             "format": "uuid"
           }
         ],
         "requestBody": {
-          "description": "Dados de entrada necessários para editar uma categoria",
+          "description": "Dados de entrada necessários para editar o nome de uma categoria",
           "content": {
-            "aplication/json": {
+            "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/RequestCreateCategory"
               }
@@ -181,7 +179,7 @@
         "responses": {
           "200": {
             "content": {
-              "aplication/json": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseCreateCategory"
                 }
@@ -193,7 +191,7 @@
     },
     "/v1/category/all": {
       "get": {
-        "description": "Listar todas as categorias",
+        "description": "Lista todas as categorias",
         "security": [
           {
             "bearerAuth": []
@@ -202,7 +200,7 @@
         "responses": {
           "200": {
             "content": {
-              "aplication/json": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseGetAllCategories"
                 }
@@ -214,7 +212,7 @@
     },
     "/v1/category/remove?category_id={category_id}": {
       "delete": {
-        "description": "Remover uma categoria pelo seu ID",
+        "description": "Remover uma categoria pelo id",
         "security": [
           {
             "bearerAuth": []
@@ -224,15 +222,16 @@
           {
             "name": "category_id",
             "in": "path",
-            "description": "ID da categoria",
+            "description": "Id da categoria",
             "required": "true",
+            "type": "string",
             "format": "uuid"
           }
         ],
         "responses": {
           "200": {
             "content": {
-              "aplication/json": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseDeleteCategory"
                 }
@@ -244,14 +243,14 @@
     },
     "/v1/product": {
       "post": {
-        "description": "Criar novo produto",
+        "description": "Criar produto",
         "security": [
           {
             "bearerAuth": []
           }
         ],
         "requestBody": {
-          "description": "Dados necessários para a criação de um novo produto.",
+          "description": "Dados necessários para a criação de um produto",
           "content": {
             "multipart/form-data": {
               "schema": {
@@ -263,7 +262,7 @@
         "responses": {
           "200": {
             "content": {
-              "aplication/json": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseCreateProduct"
                 }
@@ -275,14 +274,14 @@
     },
     "/v1/product/edit": {
       "put": {
-        "description": "Editar produto pelo ID",
+        "description": "Editar produto por id",
         "security": [
           {
             "bearerAuth": []
           }
         ],
         "requestBody": {
-          "description": "Dados de entrada para editar um produto.",
+          "description": "Dados de entrada necessários para editar um produto",
           "content": {
             "multipart/form-data": {
               "schema": {
@@ -294,7 +293,7 @@
         "responses": {
           "200": {
             "content": {
-              "aplication/json": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseDeleteUser"
                 }
@@ -306,7 +305,7 @@
     },
     "/v1/product?category_id={category_id}": {
       "get": {
-        "description": "Busca por um produto pelo category_id",
+        "description": "Busca de produto por category_id",
         "security": [
           {
             "bearerAuth": []
@@ -316,7 +315,7 @@
           {
             "name": "category_id",
             "in": "path",
-            "description": "ID da categoria",
+            "description": "Id da categoria",
             "required": "true",
             "type": "string",
             "format": "uuid"
@@ -325,7 +324,7 @@
         "responses": {
           "200": {
             "content": {
-              "aplication/json": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseCreateProduct"
                 }
@@ -337,7 +336,7 @@
     },
     "/v1/products": {
       "get": {
-        "description": "Buscar todos os produto",
+        "description": "Busca todos os products",
         "security": [
           {
             "bearerAuth": []
@@ -346,7 +345,7 @@
         "responses": {
           "200": {
             "content": {
-              "aplication/json": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseSaleProduct"
                 }
@@ -356,9 +355,9 @@
         }
       }
     },
-    "/v1/products/remove?product_id={product_id}": {
+    "/v1/product/remove?product_id={product_id}": {
       "delete": {
-        "description": "Deletar um produto",
+        "description": "Deleta um produto",
         "security": [
           {
             "bearerAuth": []
@@ -368,7 +367,7 @@
           {
             "name": "product_id",
             "in": "path",
-            "description": "ID da categoria",
+            "description": "Id do produto",
             "required": "true",
             "type": "string",
             "format": "uuid"
@@ -377,7 +376,7 @@
         "responses": {
           "200": {
             "content": {
-              "aplication/json": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseCreateProduct"
                 }
@@ -389,7 +388,7 @@
     },
     "/v1/sale/product?product_id={product_id}": {
       "put": {
-        "description": "Efetuar a venda de um produto",
+        "description": "Efetuar venda de um produto",
         "security": [
           {
             "bearerAuth": []
@@ -399,18 +398,29 @@
           {
             "name": "product_id",
             "in": "path",
-            "description": "ID da categoria",
+            "description": "Id do produto",
             "required": "true",
             "type": "string",
             "format": "uuid"
           }
         ],
         "requestBody": {
-          "description": "Dados de entrada para efetuar a venda de um produto",
+          "description": "Dados de entrada necessários para efetuar a venda de um produto",
           "content": {
-            "aplication/json": {
+            "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/RequestSaleProduct"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseSaleProduct"
+                }
               }
             }
           }
@@ -418,6 +428,7 @@
       }
     }
   },
+
   "components": {
     "schemas": {
       "RequestCreateUser": {
@@ -451,10 +462,10 @@
       "RequestAuthUser": {
         "type": "object",
         "properties": {
-          "name": {
+          "email": {
             "type": "string"
           },
-          "email": {
+          "password": {
             "type": "string"
           }
         }
@@ -476,9 +487,6 @@
           }
         }
       },
-      "ResponseDeleteUser": {
-        "type": "object"
-      },
       "RequestCreateCategory": {
         "type": "object",
         "properties": {
@@ -498,6 +506,9 @@
           }
         }
       },
+      "ResponseDeleteUser": {
+        "type": "object"
+      },
       "ResponseGetAllCategories": {
         "type": "array",
         "properties": {
@@ -514,6 +525,52 @@
         "properties": {
           "message": {
             "type": "string"
+          }
+        }
+      },
+      "RequestSaleProduct": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number"
+          }
+        }
+      },
+      "ResponseSaleProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          }
+        }
+      },
+      "RequestCreateProduct": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "file": {
+            "type": "string",
+            "format": "binary"
+          },
+          "category_id": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
           }
         }
       },
@@ -549,30 +606,6 @@
           }
         }
       },
-      "RequestCreateProduct": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "price": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "file": {
-            "type": "string",
-            "format": "binary"
-          },
-          "amount": {
-            "type": "number"
-          },
-          "category_id": {
-            "type": "string"
-          }
-        }
-      },
       "RequestEditProduct": {
         "type": "object",
         "properties": {
@@ -589,31 +622,9 @@
             "type": "string",
             "format": "binary"
           },
-          "amount": {
-            "type": "number"
-          },
           "product_id": {
             "type": "string"
-          }
-        }
-      },
-      "ResponseSaleProduct": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
           },
-          "name": {
-            "type": "string"
-          },
-          "amount": {
-            "type": "number"
-          }
-        }
-      },
-      "RequestSaleProduct": {
-        "type": "object",
-        "properties": {
           "amount": {
             "type": "number"
           }
@@ -622,9 +633,9 @@
     },
     "securitySchemes": {
       "bearerAuth": {
-        "description": "Autenticação utilizando Json Web Token",
+        "description": "Autentificação utilizando JWT",
         "type": "http",
-        "schema": "bearer",
+        "scheme": "bearer",
         "bearerFormat": "JWT"
       }
     }
