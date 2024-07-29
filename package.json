@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --transpile-only src/server.ts",
-    "postinstall": "tsc",
+    "dev": "ts-node-dev --transpile-only ./src/server.ts",
+    "postinstall": "tsc && prisma generate",
     "production": "node ./build/index.js"
   },
   "keywords": [],
